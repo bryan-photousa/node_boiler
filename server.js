@@ -6,6 +6,8 @@ const mailer = require('./email')
 const logger = require('./utilities/logger');
 const _file = require('./services/fileService');
 const fs = require("fs")
+const router = require("./routes");
+
 
 
 
@@ -20,6 +22,22 @@ const port = process.env.PORT || 1931
 // parse application/jsonock
 app.use(bodyParser.json());
 
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("withCredentials", true);
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept,Cookie, x-access-token"
+    );
+    next();
+});
+
+// register routes
+app.use(router);
+
 // parse application/x-www-form-urlencoded
 app.use(
     bodyParser.urlencoded({
@@ -29,8 +47,12 @@ app.use(
 
 
 if (app.listen(port, "127.0.0.1")) {
+    // if (app.listen(port, "10.0.198.132")) {
     console.log("IYP-AMAZON IS RUNNING on port::::: " + JSON.stringify(port))
 }
+
+
+
 
 
 
