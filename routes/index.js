@@ -9,7 +9,7 @@ module.exports = router;
 // check authentication for all requests
 
 // API routes (group routing modules here - no empty lines between)
-router.use("/api/testers", testersRoutes);
+router.use("/testers", testersRoutes);
 
 
 // API error handlers (API routes must be registered before this)
