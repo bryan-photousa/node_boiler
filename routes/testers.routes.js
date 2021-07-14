@@ -4,4 +4,5 @@ const testersController = require('../controllers/testers.controller')
 module.exports = router
 
 // api routes ===========================================================
-router.get('/', testersController.readAll)
+// router.get('/', testersController.readAll)
+router.get('/', testersController.getLocation)
